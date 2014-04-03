@@ -18,7 +18,8 @@ public class ICD10DAO {
 		ArrayList<ICD10Objects> icd10Data = new ArrayList<ICD10Objects>();
 		ArrayList<String> disease = new ArrayList<String>();
 		ArrayList<String> stopwords = new ArrayList<String>();
-		Map<String, Integer> hm = new HashMap<String, Integer>();		
+		Map<String, Integer> hm = new HashMap<String, Integer>();
+		Map<String, Integer> temphm = new HashMap<String, Integer>();
 		String[] splitted;	
 		Map.Entry pairs;
 		int count = 0;
@@ -48,15 +49,19 @@ public class ICD10DAO {
 			for (String s : disease){
 			    //System.out.println(count++ + ", " + s);
 				splitted = s.split("\\s");
+				temphm.clear(); 
 				for (int i=0; i<splitted.length ; i++) {
-					count = 0; // Value is the freq. where freq = no of unique icd10 codes where this word occurs. impt - duplicate word can occur in same icd10 code
+					count = 0; 
 					key = splitted[i].trim().toLowerCase();
-					if(key.matches("[a-zA-Z]+")){ // for inserting only text (no numeric or special chars) 
+					if(key.matches("[a-zA-Z0-9/\\-+]+")){ // for inserting only text, numbers and few special chars 
 			         	if (hm.containsKey(key)) {
-			         		count = hm.get(key);
-			         		hm.put(key, count + 1);
+			         		if (! temphm.containsKey(key)){ // Do not increment count if keyword re-appears in the same icd10 code's descrip.
+				         		count = hm.get(key);
+				         		hm.put(key, count + 1);
+			         		}
 			         	} else if (key != null && !key.isEmpty()){
-			         		hm.put(key, count);
+			         		hm.put(key, count + 1);
+			         		temphm.put(key, count + 1);
 			         	}
 					}else{
 						System.out.println("Eliminated from hashmap creation initially - " + key);
@@ -95,7 +100,11 @@ public class ICD10DAO {
 				ps.setInt(2, (int) (pairs.getValue()));
 				ps.executeUpdate();
 		    }
-						
+			
+			// free memory 
+			temphm.clear();
+			hm.clear();
+			
 			return icd10Data;	
 		} catch (Exception e) {			
 			throw e;
