@@ -41,63 +41,78 @@ body {
 					<li class="active"><a href="home.jsp">Home</a></li>
 					<li><a href="#about">About</a></li>
 					<li><a href="#contact">Contact</a></li>
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown">Services<b class="caret"></b></a>
+					<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Services<b class="caret"></b></a>
 						<ul class="dropdown-menu">
 							<li><a href="prescriptionToRecord.jsp"> Prescription To Record</a></li>
 							<li><a href="searchICD10.jsp"> ICD10 Code Generation</a></li>
 							<li><a href="billingFraudDetection.jsp"> Billing Fraud Detection</a></li>
-						</ul></li>
+						</ul>
+					</li>
 				</ul>
-				<form class="navbar-form navbar-right">
-					<div class="form-group">
-						<input type="text" placeholder="Email" class="form-control">
-					</div>
-					<div class="form-group">
-						<input type="password" placeholder="Password" class="form-control">
-					</div>
-					<button type="submit" class="btn btn-success">Sign in</button>
-				</form>
 			</div>
 			<!--/.navbar-collapse -->
 		</div>
 	</div>
 
-	<div class="container" id="wrap">
+	<div class="container">
 		<div class="row">
-			<div class="col-md-6 col-md-offset-3">
-				<form action="r" method="post" accept-charset="utf-8" class="form"
-					role="form">
-					<legend>Sign Up</legend>
-					<div class="row">
-						<div class="col-xs-6 col-md-6">
-							<input type="text" name="firstname" value=""
-								class="form-control input-lg" placeholder="First Name" />
-						</div>
-						<div class="col-xs-6 col-md-6">
-							<input type="text" name="lastname" value=""
-								class="form-control input-lg" placeholder="Last Name" />
-						</div>
-					</div>
-					<input type="text" name="email" value=""
-						class="form-control input-lg" placeholder="Your Email" /> <input
-						type="password" name="password" value=""
-						class="form-control input-lg" placeholder="Password" /> <input
-						type="password" name="confirm_password" value=""
-						class="form-control input-lg" placeholder="Confirm Password" /> <br />
-					<span class="help-block">By clicking Create my account, you
-						agree to our Terms.</span>
-					<button class="btn btn-lg btn-primary btn-block signup-btn"
-						type="submit">Create my account</button>
-				</form>
+			<div class="col-lg-12">
+				<div class="page-header">
+					<h1>Search for ICD10 Code</h1>
+				</div>
 			</div>
 		</div>
-		<footer>
-			<p>&copy; SJSU Cmpe295 Group25 2013</p>
-		</footer>
+		<div class="row">
+			<div class="col-lg-12"></div>
+		</div>
+		<div class="row">
+			<div class="col-lg-6">
+				<input type="search" id="search" value="" class="form-control"
+					placeholder="Enter patient symptom" style="margin-bottom: 20px;">
+				<button class="btn btn-success">Search</button>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-12">
+				<table class="table icdTable" id="table">
+					<thead>
+						<tr>
+							<th>ICD10 Code</th>
+							<th>Description</th>
+							<th>Notes</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>A00.0</td>
+							<td>Cholera due to Vibrio cholerae 01, biovar cholerae</td>
+							<td>Cholera due to Vibrio cholerae 01, biovar cholerae</td>
+						</tr>
+						<tr>
+							<td>A01</td>
+							<td>Typhoid and paratyphoid fevers</td>
+							<td>Typhoid and paratyphoid fevers</td>
+						</tr>
+						<tr>
+							<td>A01.02</td>
+							<td>Typhoid fever with heart involvement</td>
+							<td>Typhoid fever with heart involvement</td>
+						</tr>
+						<tr>
+							<td>A01.03</td>
+							<td>Typhoid pneumonia</td>
+							<td>Typhoid pneumonia</td>
+						</tr>
+					</tbody>
+				</table>
+				<hr>
+			</div>
+		</div>
 	</div>
+	<script	src="//rawgithub.com/stidges/jquery-searchable/master/dist/jquery.searchable-1.0.0.min.js"></script>
 	<!-- /container -->
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+	<script
+		src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
 	<script src="js/vendor/bootstrap.min.js"></script>
 	<script src="js/main.js"></script>
 </body>
